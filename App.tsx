@@ -15,9 +15,8 @@ import {
   Text,
   useColorScheme,
   View,
-} from 'react-native'
-;
-lll
+} from 'react-native';
+
 import {
   Colors,
   DebugInstructions,
