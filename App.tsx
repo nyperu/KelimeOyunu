@@ -15,7 +15,8 @@ import {
   Text,
   useColorScheme,
   View,
-} from 'react-native';
+} from 'react-native'
+;
 
 import {
   Colors,
