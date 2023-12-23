@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, StyleSheet, ScrollView } from 'react-native';
-import FlipCardComponent from './FlipCardComponent'; // FlipCardComponent'in import edildiği yer
+import FlipCardComponent from '../FlipCardComponent'; // FlipCardComponent'in import edildiği yer
 
 // Meyve objesi için bir tip tanımlaması
 interface Fruit {
@@ -83,7 +83,7 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       {/* Üst bölüm: Başlık */}
       <View style={styles.header}>
-        <Text style={styles.headerText}>KELİME OYUNU</Text>
+        <Text style={styles.headerText}> New KELİME OYUNU</Text>
       </View>
 
       {/* Orta bölüm: Kartlar */}
