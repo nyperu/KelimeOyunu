@@ -1,4 +1,4 @@
-package com.kelimeoyunu
+package com.YeniProje
 
 import android.app.Application
 import com.facebook.react.PackageList
