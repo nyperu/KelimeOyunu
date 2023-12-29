@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "982509289636",
-    "project_id": "kelimeoyunu-7d5e1",
-    "storage_bucket": "kelimeoyunu-7d5e1.appspot.com"
+    "project_number": "624992529133",
+    "project_id": "yeniproje-bbbb2",
+    "storage_bucket": "yeniproje-bbbb2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:982509289636:android:ad48924abac7643c286631",
+        "mobilesdk_app_id": "1:624992529133:android:b5e3a62de1ca89232b7ae4",
         "android_client_info": {
-          "package_name": "com.KelimeOyunu"
+          "package_name": "com.YeniProje"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCE13kHOP2A_8kn3WwGO9JL3nSXkC_uW6s"
+          "current_key": "AIzaSyDr7QmUHfuEtpMObrDhBBDnUD16g3lWYkA"
         }
       ],
       "services": {
