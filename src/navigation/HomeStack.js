@@ -7,10 +7,10 @@ import IconFa from 'react-native-vector-icons/FontAwesome';
 import firebase from '@react-native-firebase/app';
 import '@react-native-firebase/auth';
 import '@react-native-firebase/firestore';
-import OynaScreen from '../screens/Home/OynaScreen';
+import BilinenlerScreen from '../screens/Home/BilinenlerScreen';
 import ProfilScreen from '../screens/Home/ProfilScreen';
-import OgrenilenScreen from '../screens/Home/OgrenilenScreen';
-import Bilinmeyenler from '../screens/Home/Bilinmeyenler';
+import EkleScreen from '../screens/Home/EkleScreen';
+import Bilinmeyenler from '../screens/Home/OynaScreen';
 //import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // kullanıcı rolünü state'de saklıyoruz ve Firebase'den çekiyoruz
@@ -59,21 +59,21 @@ const BottomTabStack = () => {
         
       <Tab.Screen
         name="                       KELİME OYUNU"
-        component={OynaScreen}
+        component={BilinenlerScreen}
         options={{
-          tabBarLabel: 'Oyna',
-          // tabBarIcon: ({color, size}) => (
-          //   <Icon name="home" color={color} size={size} />
-          // ),
+          tabBarLabel: 'Bilinenler',
+           tabBarIcon: ({color, size}) => (
+             <Icon name="home" color={color} size={size} />
+           ),
         }}
       />
 {
 userRole === 'Admin' && (
     <Tab.Screen
-      name="ÖgrenilenScreen"
-      component={OgrenilenScreen}
+      name="                       KELİME OYUNU "
+      component={EkleScreen}
       options={{
-        tabBarLabel: 'Öğrenilen',
+        tabBarLabel: 'Ekle',
         // tabBarIcon gibi diğer seçenekler
       }}
     />
@@ -82,21 +82,21 @@ userRole === 'Admin' && (
 
 
 <Tab.Screen
-        name="Bilinmeyenler"
+        name="                        KELİME OYUNU  "
         component={Bilinmeyenler}
-       // options={{
-         // tabBarLabel: 'Bilinmeyenler',
-          //tabBarIcon: ({color, size}) => (
-           // <IconFa name="exchange" color={color} size={size} />
-         // ),
-        //}}
+        options={{
+          tabBarLabel: 'Oyna',
+          tabBarIcon: ({color, size}) => (
+            <IconFa name="exchange" color={color} size={size} />
+          ),
+        }}
       />
     
 
       
 
       <Tab.Screen
-        name="ProfilScreen"
+        name="                        KELİME OYUNU"
         component={ProfilScreen}
         options={{
           tabBarLabel: 'Profil',

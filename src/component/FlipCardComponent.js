@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import FlipCard from 'react-native-flip-card';
 
-const FlipCardComponent = ({id, frontText, backText, onFlipEnd }) => {
+const FlipCardComponent = ({ id, frontText, backText, onFlipEnd }) => {
   const [flipped, setFlipped] = useState(false);
-  const fadeAnim = useState(new Animated.Value(1))[0];
-  
+  const [isCorrect, setIsCorrect] = useState(null); // Doğru veya yanlış bilindiğini tutan state
+  const fadeAnim = new Animated.Value(1);
+
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -14,24 +15,37 @@ const FlipCardComponent = ({id, frontText, backText, onFlipEnd }) => {
     }
     return color;
   };
-  // useState kullanarak rastgele renkleri saklayın
-  const [cardFrontColor, setCardFrontColor] = useState(getRandomColor());
-  const [cardBackColor, setCardBackColor] = useState(getRandomColor());
-  const handlePress = () => {
+
+  const handlePress = async () => {
     setFlipped(!flipped);
-    // Kartın yok olmadan önce 5 saniye beklemesi için setTimeout kullanın
-    setTimeout(() => {
+    // onFlipEnd fonksiyonunu çağır ve dönen değeri kullanarak kartın durumunu kontrol et
+    const result = await onFlipEnd(id);
+    const fadeAnim = useRef(new Animated.Value(1)).current;
+
+    setIsCorrect(result);
+
+    if (result) {
+      // Doğru bilindiyse, kartın yavaşça kaybolmasını sağla
+      setTimeout(() => {
       Animated.timing(fadeAnim, {
         toValue: 0,
-        duration: 1000,
+        duration: 5000,
         useNativeDriver: true,
-      }).start(onFlipEnd);
-    }, 3000); // 5 saniye = 5000 milisaniye
+      }).start().start(() => {
+        // Animasyon tamamlandıktan sonra flip durumunu false yap
+        setFlipped(false);
+      });
+    }, 1000); // 1 saniye sonra kaybolma animasyonunu başlat
+    } else {
+      // Yanlış bilindiyse, kartın flip olmasını ve eski haline dönmesini sağla
+      setTimeout(() => {
+        setFlipped(false);
+      }, 3000); // 3 saniye sonra kartı eski haline döndür
+    }
   };
-  
 
   return (
-    <Animated.View style={[styles.card, { opacity: fadeAnim }]}>
+    <Animated.View style={[styles.card, { opacity: isCorrect ? fadeAnim : 1 }]}>
       <TouchableOpacity onPress={handlePress} style={styles.touchable}>
         <FlipCard
           flipHorizontal
@@ -41,11 +55,11 @@ const FlipCardComponent = ({id, frontText, backText, onFlipEnd }) => {
           style={styles.flipCard}
         >
           {/* Kartın Ön Yüzü */}
-          <View style={[styles.face, { backgroundColor: cardFrontColor }]}>
+          <View style={[styles.face, { backgroundColor: getRandomColor() }]}>
             <Text style={styles.text}>{frontText}</Text>
           </View>
           {/* Kartın Arka Yüzü */}
-          <View style={[styles.back, { backgroundColor: cardBackColor }]}>
+          <View style={[styles.back, { backgroundColor: getRandomColor() }]}>
             <Text style={styles.text}>{backText}</Text>
           </View>
         </FlipCard>
