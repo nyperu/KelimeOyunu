@@ -46,6 +46,26 @@ const SignUpScreen = ({navigation}) => {
       .required('Boş geçilemez')
       .oneOf([yup.ref('password')], 'Şifreler uyumsuz'),
   });
+   // Yeni kayıt fonksiyonunuzu güncelleyin
+   const handleSignup = async (email, password, name, phone) => {
+    try {
+      // Firebase Authentication'a yeni kullanıcıyı kaydet
+      const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+      const uid = userCredential.user.uid;
+
+      // Firestore 'Users' koleksiyonuna yeni kullanıcı bilgilerini kaydet
+      await firestore().collection('Users').doc(uid).set({
+        name: name,
+        phone: phone,
+        email: email,
+      });
+
+      // Kullanıcıyı ana sayfaya yönlendir (veya başka bir sayfaya)
+      navigation.navigate('Home');
+    } catch (error) {
+      console.error("Kullanıcı kaydı sırasında hata oluştu:", error);
+    }
+  };
   return (
     <SafeAreaView
       style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
