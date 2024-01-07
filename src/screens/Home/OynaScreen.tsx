@@ -89,6 +89,7 @@ const wordsToShow = fetchedWords.length > 12 ? fetchedWords.slice(0, 12) : fetch
                       const remainingWords = words.filter(word => word.id !== id);
                      pickNewTargetWord(remainingWords); // Yeni targetWord seç
                     });
+                    
       const remainingWords = words.filter(word => word.id !== id);
       pickNewTargetWord(remainingWords);
       return true; // Doğru bilindi

@@ -35,7 +35,7 @@ const FlipCardComponent = ({ id, frontText, backText, onFlipEnd }) => {
         // Animasyon tamamlandıktan sonra flip durumunu false yap
         setFlipped(false);
       });
-    }, 1000); // 1 saniye sonra kaybolma animasyonunu başlat
+    }, 3000); // 1 saniye sonra kaybolma animasyonunu başlat
     } else {
       // Yanlış bilindiyse, kartın flip olmasını ve eski haline dönmesini sağla
       setTimeout(() => {
